@@ -1,11 +1,10 @@
 ﻿using Microsoft.Azure;
 using Microsoft.Azure.Management.Insights;
 using Microsoft.Azure.Management.Insights.Models;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace AzureEvents
 {
@@ -15,7 +14,7 @@ namespace AzureEvents
     class AzureHealthAlerts
     {
         [STAThread]
-        static void Main(string[] args)
+        static async Task<int> Main(string[] args)
         {
             var cmdLine = Arguments.ParseAndValidateArguments(args);
             if(cmdLine == null)
@@ -44,7 +43,7 @@ namespace AzureEvents
                     Environment.Exit(2);
                 }
                 //Get Credentials        
-                string token = Utility.GetAuthorizationToken(tenantId, cmdLine.ApplicationId, cmdLine.Password);
+                string token = await Utility.GetAuthorizationToken(tenantId, cmdLine.ApplicationId, cmdLine.Password);
 
                 TokenCloudCredentials credentials = new TokenCloudCredentials(cmdLine.SubscriptionId, token);
 
@@ -101,7 +100,9 @@ namespace AzureEvents
                 Console.WriteLine("Whoops! Something went wrong...");
                 Console.WriteLine(exe.Message);
                 Console.ForegroundColor = ConsoleColor.White;
+                return -1;
             }
+            return 0;
         }
        
 

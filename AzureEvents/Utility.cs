@@ -1,8 +1,11 @@
 ﻿using Microsoft.Azure;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
+using System.Threading.Tasks;
+using ClientCredential = Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential;
 
 namespace AzureEvents
 {
@@ -27,7 +30,7 @@ namespace AzureEvents
             
         }
 
-        public static string GetAuthorizationToken(string tenantId, string clientId, string password)
+        public static async Task<string> GetAuthorizationToken(string tenantId, string clientId, string password)
         {
             try
             {
@@ -35,7 +38,7 @@ namespace AzureEvents
                 //Establish context & Acquire token 
                 var authenticationContext = new AuthenticationContext("https://login.windows.net/" + tenantId);
                 var credential = new ClientCredential(clientId, password);
-                var result = authenticationContext.AcquireToken("https://management.core.windows.net/", credential);
+                var result = await authenticationContext.AcquireTokenAsync("https://management.core.windows.net/", credential);
 
                 if (result == null)
                 {

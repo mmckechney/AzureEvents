@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web.Script.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AzureEvents
 {
@@ -31,8 +32,7 @@ namespace AzureEvents
                 }
                 if(file.Length > 0)
                 {
-                    JavaScriptSerializer serializer = new JavaScriptSerializer();
-                    cfg = serializer.Deserialize<JsonConfig>(File.ReadAllText(value));
+                     cfg = JsonSerializer.Deserialize<JsonConfig>(File.ReadAllText(value));
 
                     if (cfg != null && cfg is JsonConfig)
                     {
