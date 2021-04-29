@@ -1,0 +1,14 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.Identity.Client
+    versions:
+    - 4.28.0
+    - 4.28.1
+    - 4.29.0
+    - 4.30.0
