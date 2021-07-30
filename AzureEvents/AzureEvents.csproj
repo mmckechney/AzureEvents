@@ -15,7 +15,7 @@
     <PackageReference Include="Microsoft.Data.Edm" version="5.8.4" />
     <PackageReference Include="Microsoft.Data.OData" version="5.8.4" />
     <PackageReference Include="Microsoft.Data.Services.Client" version="5.8.4" />
-    <PackageReference Include="Microsoft.Identity.Client" version="4.34.0" />
+    <PackageReference Include="Microsoft.Identity.Client" version="4.35.1" />
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.2.9" />
     <PackageReference Include="Microsoft.Net.Http" version="2.2.29" />
     <PackageReference Include="Microsoft.WindowsAzure.Management" version="4.1.3" />
